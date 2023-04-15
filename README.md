@@ -1,6 +1,17 @@
-# Usage
+# Laravel Template Project
 
-## Steps for setting this up
+## Content
+
+- [Setup](#setup)
+- [Notes](#notes)
+  - [Terminals](#terminals)
+  - [Other](#other)
+  - [Deployments](#deployments)
+  - [Sidenotes](#sidenotes)
+
+<br><hr>
+
+## Setup
 
 1. Install Docker Desktop
   - [Windows](https://docs.docker.com/desktop/install/windows-install/)
@@ -61,9 +72,11 @@ npm run dev
 
 12. Start editing files
 
-## Notes
+<br><hr>
 
-### Terminals
+## **Notes**
+
+## Terminals
 
 You will be working with 2 (two) terminals for this project
 
@@ -80,11 +93,11 @@ You will be working with 2 (two) terminals for this project
   - ```php <command>``` installing packages and interacting withg the artisan CLI
   - ```npm <command>``` administrating package.json++
 
-### Other
+## Other
 
 The **.env** file containes secrets that should not be shared with 3rd parties, and hence is excluded from the Version Control System. Be mindeful of not losing the content from it, or keep some instructions around for regenerating those.
 
-### Deployments
+## Deployments
 
 I am a little bit uncertain about what the best deployment method for PHP applications are.
 Two alternatives that [Laravel reccomends](https://laravel.com/docs/10.x/deployment)
@@ -96,4 +109,4 @@ Two alternatives that [Laravel reccomends](https://laravel.com/docs/10.x/deploym
 
 - After installing and setting up [Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze) you might have to run ```php artisan view:clear``` to clear out any reminders from the default setup process. [StackOverflow](https://stackoverflow.com/a/72821399)
 
-- When running Vite in development mode it places a file [/public/hot](./public/hot), this should be removed automatically when stopping the server. But there have been some [reported issues](https://laracasts.com/discuss/channels/vite/laravel-vite-err-address-invalid?page=1&replyId=872112) that this is not always the case, which breaks production. If yu have any problems check if that file exists and remove it.
+- When running Vite in development mode it places a file [/public/hot](./public/hot), this should be removed automatically when stopping the server. But there have been some [reported issues](https://laracasts.com/discuss/channels/vite/laravel-vite-err-address-invalid?page=1&replyId=872112) that this is not always the case, which breaks production. If you have any problems check if that file exists and remove it.
