@@ -11,12 +11,35 @@
 ```sh
 git clone $REPO_URL
 ```
-4. Open VS Code inside the repository **AND THEN** run (Ctrl + Shift + P) ```Dev Container: Open folder in Container```
-5. Start the development server from the original terminal
+4. Install PHP dependencies
+```sh
+docker run --rm \
+    --pull=always \
+    -v "$(pwd)":/opt \
+    -w /opt \
+    laravelsail/php82-composer:latest \
+    bash -c "composer install"
+```
+This downloads a temporary container with the software to install the required dependencies to get up and running
+5. Copy over the .env file, [configure it](https://laravel.com/docs/10.x/configuration#introduction)
+```sh
+cp .env.example .env
+```
+6. Open VS Code inside the repository **AND THEN** run (Ctrl + Shift + P) ```Dev Container: Open folder in Container```
+7. Start the development server
 ```sh
 ./vendor/bin/sail up
 ```
-6. Open a browser at [http://localhost](http://localhost)
+8. Generate a new APP_KEY
+```sh
+php artisan key:generate
+```
+9. You should now be able to open a browser at [http://localhost](http://localhost)
+
+10. Install npm dependencies
+```sh
+npm install
+```
 
 ## Notes
 
