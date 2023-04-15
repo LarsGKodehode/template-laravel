@@ -1,66 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Usage
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Steps for setting this up
 
-## About Laravel
+1. Install Docker Desktop
+  - [Windows](https://docs.docker.com/desktop/install/windows-install/)
+  - [iOS](https://docs.docker.com/desktop/install/mac-install/)
+  - [Linux Distro](https://docs.docker.com/desktop/install/linux-install/)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2. Install the VS Code extension for working inside [devcontainers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+3. Clone this repository
+```sh
+git clone $REPO_URL
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+4. Install PHP dependencies
+```sh
+docker run --rm \
+    --pull=always \
+    -v "$(pwd)":/opt \
+    -w /opt \
+    laravelsail/php82-composer:latest \
+    bash -c "composer install"
+```
+This downloads a temporary container with the software to install the required dependencies to get up and running
 
-## Learning Laravel
+5. Copy over the .env file, [configure it](https://laravel.com/docs/10.x/configuration#introduction)
+```sh
+cp .env.example .env
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+6. Open VS Code inside the repository **AND THEN** run (Ctrl + Shift + P) ```Dev Container: Open folder in Container```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+7. Start the development server
+```sh
+./vendor/bin/sail up
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+8. Generate a new APP_KEY
+```sh
+php artisan key:generate
+```
 
-## Laravel Sponsors
+9. You should now be able to open a browser at [http://localhost](http://localhost) and see something
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+10. Install Node dependencies
+```sh
+npm install
+```
 
-### Premium Partners
+11. Create tabels for your local database
+```sh
+php artisan migrate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+12. Start the deveolopment server
+```sh
+npm run dev
+```
 
-## Contributing
+12. Start editing files
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Notes
 
-## Code of Conduct
+### Terminals
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+You will be working with 2 (two) terminals for this project
 
-## Security Vulnerabilities
+1. Your OS terminal of choice. You will use this for project commands ex:
+  - ```git``` <br>
+    Simplify tracking changes to your project
+  - ```docker```
+    It's possible to run containers inside containers, but thats an advanced topic
+  - ```./vendor/bin/sail```
+    Similar as above, due to sail just being a wrapper around docker
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. Terminal inside VS Code. This will be used for running commands inside the project
+  - ```composer <command>``` installing packages
+  - ```php <command>``` installing packages and interacting withg the artisan CLI
+  - ```npm <command>``` administrating package.json++
 
-## License
+### Other
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The **.env** file containes secrets that should not be shared with 3rd parties, and hence is excluded from the Version Control System. Be mindeful of not losing the content from it, or keep some instructions around for regenerating those.
+
+### Deployments
+
+I am a little bit uncertain about what the best deployment method for PHP applications are.
+Two alternatives that [Laravel reccomends](https://laravel.com/docs/10.x/deployment)
+
+- [Forge](https://forge.laravel.com/#pricing)
+- [Vapor](https://vapor.laravel.com/)
+
+## Sidenotes
+
+- After installing and setting up [Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze) you might have to run ```php artisan view:clear``` to clear out any reminders from the default setup process. [StackOverflow](https://stackoverflow.com/a/72821399)
+
+- When running Vite in development mode it places a file [/public/hot](./public/hot), this should be removed automatically when stopping the server. But there have been some [reported issues](https://laracasts.com/discuss/channels/vite/laravel-vite-err-address-invalid?page=1&replyId=872112) that this is not always the case, which breaks production. If yu have any problems check if that file exists and remove it.
