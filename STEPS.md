@@ -29,3 +29,10 @@ You will be working with 2 (two) terminals for this project
 2. VS Code terminal. This will be used for running commands inside the project
   - ```composer <command>``` installing packages
   - ```php <command>``` installing packages and interacting withg the artisan CLI
+
+
+## Sidenotes
+
+Commments for those who want to set this up themself
+
+- After installing and setting up breeze you might have to run ```php artisan view:clear``` to clear out any reminders from the default setup process. [StackOverflow](https://stackoverflow.com/a/72821399)
