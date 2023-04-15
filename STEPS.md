@@ -6,11 +6,14 @@
   - [Windows](https://docs.docker.com/desktop/install/windows-install/)
   - [iOS](https://docs.docker.com/desktop/install/mac-install/)
   - [Linux Distro](https://docs.docker.com/desktop/install/linux-install/)
+
 2. Install the VS Code extension for working inside [devcontainers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
 3. Clone this repository
 ```sh
 git clone $REPO_URL
 ```
+
 4. Install PHP dependencies
 ```sh
 docker run --rm \
@@ -21,24 +24,34 @@ docker run --rm \
     bash -c "composer install"
 ```
 This downloads a temporary container with the software to install the required dependencies to get up and running
+
 5. Copy over the .env file, [configure it](https://laravel.com/docs/10.x/configuration#introduction)
 ```sh
 cp .env.example .env
 ```
+
 6. Open VS Code inside the repository **AND THEN** run (Ctrl + Shift + P) ```Dev Container: Open folder in Container```
+
 7. Start the development server
 ```sh
 ./vendor/bin/sail up
 ```
+
 8. Generate a new APP_KEY
 ```sh
 php artisan key:generate
 ```
-9. You should now be able to open a browser at [http://localhost](http://localhost)
+
+9. You should now be able to open a browser at [http://localhost](http://localhost) and see something
 
 10. Install npm dependencies
 ```sh
 npm install
+```
+
+11. Start the deveolopment server
+```sh
+npm run dev
 ```
 
 ## Notes
