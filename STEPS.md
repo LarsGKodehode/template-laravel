@@ -44,15 +44,22 @@ php artisan key:generate
 
 9. You should now be able to open a browser at [http://localhost](http://localhost) and see something
 
-10. Install npm dependencies
+10. Install Node dependencies
 ```sh
 npm install
 ```
 
-11. Start the deveolopment server
+11. Create tabels for your local database
+```sh
+php artisan migrate
+```
+
+12. Start the deveolopment server
 ```sh
 npm run dev
 ```
+
+12. Start editing files
 
 ## Notes
 
@@ -87,6 +94,6 @@ Two alternatives that [Laravel reccomends](https://laravel.com/docs/10.x/deploym
 
 ## Sidenotes
 
-Commments for those who want to set this up themself
+- After installing and setting up [Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze) you might have to run ```php artisan view:clear``` to clear out any reminders from the default setup process. [StackOverflow](https://stackoverflow.com/a/72821399)
 
-- After installing and setting up breeze you might have to run ```php artisan view:clear``` to clear out any reminders from the default setup process. [StackOverflow](https://stackoverflow.com/a/72821399)
+- When running Vite in development mode it places a file [/public/hot](./public/hot), this should be removed automatically when stopping the server. But there have been some [reported issues](https://laracasts.com/discuss/channels/vite/laravel-vite-err-address-invalid?page=1&replyId=872112) that this is not always the case, which breaks production. If yu have any problems check if that file exists and remove it.
