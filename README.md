@@ -1,5 +1,9 @@
 # Laravel Template Project
 
+## Short
+
+This is a devcontainer template repository setup with a unmodified Laravel Breeze:Vue project.
+
 ## Content
 
 - [Setup](#setup)
