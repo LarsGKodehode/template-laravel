@@ -41,21 +41,21 @@ This downloads a temporary container with the software to install the required d
 cp .env.example .env
 ```
 
-6. Open VS Code inside the repository **AND THEN** run (Ctrl + Shift + P) ```Dev Container: Open folder in Container```
-
-7. Start the development server
+6. Start the development server
 ```sh
 ./vendor/bin/sail up
 ```
 
-8. Generate a new APP_KEY
-```sh
-php artisan key:generate
-```
-
-9. [FIX THIS] Open Docker Desktop and open a terminal into the main container (not sql and not redis) and run
+7. [FIX THIS] Open Docker Desktop and open a terminal into the main container (not sql and not redis) and run
 ```sh
 chown -R 1000:1000 /var/www/html
+```
+
+8. Open VS Code inside the repository **AND THEN** run (Ctrl + Shift + P) ```Dev Container: Open folder in Container```
+
+9. Generate a new APP_KEY
+```sh
+php artisan key:generate
 ```
 
 10. You should now be able to open a browser at [http://localhost](http://localhost) and see something
