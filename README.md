@@ -53,24 +53,29 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-9. You should now be able to open a browser at [http://localhost](http://localhost) and see something
+9. [FIX THIS] Open Docker Desktop and open a terminal into the main container (not sql and not redis) and run
+```sh
+chown -R 1000:1000 /var/www/html
+```
 
-10. Install Node dependencies
+10. You should now be able to open a browser at [http://localhost](http://localhost) and see something
+
+11. Install Node dependencies
 ```sh
 npm install
 ```
 
-11. Create tabels for your local database
+12. Create tabels for your local database
 ```sh
 php artisan migrate
 ```
 
-12. Start the deveolopment server
+13. Start the deveolopment server
 ```sh
 npm run dev
 ```
 
-12. Start editing files
+14. Start editing files
 
 <br><hr>
 
